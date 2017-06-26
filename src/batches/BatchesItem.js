@@ -1,18 +1,18 @@
 import React, { PureComponent } from 'react'
 
-class BatchItem extends PureComponent {
+class BatchesItem extends PureComponent {
   render() {
-    const { number, start_date, end_date } = this.props
+    const { number, startDate, endDate } = this.props
 
     return(
       <article className="batch">
         <h1>BATCH { number }</h1>
         <div>
-          <p>{ start_date } - { end_date }</p>
+          <p>{ startDate } - { endDate }</p>
         </div>
       </article>
     )
   }
 }
 
-export default BatchItem
+export default BatchesItem
