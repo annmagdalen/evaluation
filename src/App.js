@@ -1,5 +1,6 @@
 import React from 'react'
 import BatchesContainer from './batches/BatchesContainer'
+import './App.css'
 
 const batches = [
   {
