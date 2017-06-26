@@ -1,21 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import BatchesContainer from './batches/BatchesContainer'
 
-class App extends Component {
+const batches = [
+  {
+    number: 1,
+    start_date: "2017-06-19",
+    end_date: "2017-06-20"
+  },
+  {
+    number: 2,
+    start_date: "2017-07-19",
+    end_date: "2017-07-20"
+  },
+  {
+    number: 3,
+    start_date: "2017-08-19",
+    end_date: "2017-08-20"
+  }
+]
+
+class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <BatchesContainer batches={ batches } />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
