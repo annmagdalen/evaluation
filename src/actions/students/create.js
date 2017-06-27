@@ -12,7 +12,7 @@ export default (newStudent) => {
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
-    const backend = api.service('students')
+    const backend = api.service('batches')
 
     backend.create(newStudent)
       .then((result) => {

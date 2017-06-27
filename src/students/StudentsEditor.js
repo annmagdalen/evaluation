@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
-import Editor from 'react-medium-editor'
 import { connect } from 'react-redux'
 import createStudent from '../actions/students/create'
+import joinBatch from '../actions/batches/join'
 import 'medium-editor/dist/css/medium-editor.css'
 import 'medium-editor/dist/css/themes/default.css'
 
@@ -40,6 +40,9 @@ class StudentsEditor extends PureComponent {
       picture
     }
     this.props.createStudent(student)
+
+    const { joinBatch, currentBatch } = this.props
+    joinBatch(currentBatch)
   }
 
   render() {
@@ -69,8 +72,9 @@ class StudentsEditor extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ currentUser }) => ({
+const mapStateToProps = ({ currentUser, currentBatch }) => ({
   signedIn: !!currentUser && !!currentUser._id,
+  currentBatch
 })
 
-export default connect(mapStateToProps, { createStudent })(StudentsEditor)
+export default connect(mapStateToProps, { createStudent, joinBatch })(StudentsEditor)

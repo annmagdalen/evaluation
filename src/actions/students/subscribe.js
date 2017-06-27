@@ -6,7 +6,7 @@ export const STUDENT_UPDATED = 'STUDENT_UPDATED'
 export const STUDENT_REMOVED = 'STUDENT_REMOVED'
 
 const api = new API()
-const students = api.service('students')
+const students = api.service('batches')
 
 export default () => {
   return (dispatch) => {

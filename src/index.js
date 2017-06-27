@@ -8,6 +8,7 @@ import store, { history } from './store'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import BatchesContainer from './batches/BatchesContainer'
 import BatchesPage from './batches/BatchesPage'
+import StudentsPage from './students/StudentsPage'
 import SignIn from './users/SignIn'
 import './index.css';
 
@@ -18,7 +19,8 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={BatchesContainer} />
-        <Route path="/batches/:batchNumber" component={BatchesPage} />
+        <Route path="/batch/:batchId" component={BatchesPage} />
+        <Route path="/student/:studentId" component={StudentsPage} />
         <Route path="/sign-in" component={SignIn} />
       </Route>
     </Router>
