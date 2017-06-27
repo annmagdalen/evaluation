@@ -1,12 +1,19 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router'
 
 class BatchesItem extends PureComponent {
+  static propTypes = {
+    number: PropTypes.number.isRequired,
+  }
+
   render() {
     const { number, startDate, endDate } = this.props
 
     return(
       <article className="batch">
-        <h1>BATCH { number }</h1>
+        <h1>
+        <Link to={`/batches/${number}`}>BATCH { number }</Link></h1>
         <div>
           <p>{ startDate } - { endDate }</p>
         </div>

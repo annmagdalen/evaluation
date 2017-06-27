@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react'
 import Editor from 'react-medium-editor'
-import toMarkdown from 'to-markdown'
 import { connect } from 'react-redux'
 import createBatch from '../actions/batches/create'
 import 'medium-editor/dist/css/medium-editor.css'
 import 'medium-editor/dist/css/themes/default.css'
 
-class BatchEditor extends PureComponent {
+class BatchesEditor extends PureComponent {
   constructor(props) {
     super()
 
@@ -91,4 +90,4 @@ const mapStateToProps = ({ currentUser }) => ({
   signedIn: !!currentUser && !!currentUser._id,
 })
 
-export default connect(mapStateToProps, { createBatch })(BatchEditor)
+export default connect(mapStateToProps, { createBatch })(BatchesEditor)
