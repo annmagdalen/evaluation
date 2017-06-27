@@ -4,12 +4,19 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux'
 import store from './store'
-import BatchesEditor from './batches/BatchesEditor'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+import BatchesContainer from './batches/BatchesContainer'
 import './index.css';
+
+injectTapEventPlugin()
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router history={history}>
+      <Route path="/" component={App}>
+        <INdexRoute component={BatchesContainer} />
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
