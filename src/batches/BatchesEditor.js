@@ -87,4 +87,8 @@ class BatchEditor extends PureComponent {
   }
 }
 
-export default connect(null, { createBatch })(BatchEditor)
+const mapStateToProps = ({ currentUser }) => ({
+  signedIn: !!currentUser && !!currentUser._id,
+})
+
+export default connect(mapStateToProps, { createBatch })(BatchEditor)
