@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router'
 
 class DayItem extends PureComponent {
   static propTypes = {
-    date: PropTypes.string.isRequired,
+    date: PropTypes.string,
     remarks: PropTypes.string
   }
 
@@ -13,6 +12,7 @@ class DayItem extends PureComponent {
 
     return(
       <article className="day">
+        <h1>{remarks}</h1>
         <h1>{ date }</h1>
       </article>
     )

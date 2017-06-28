@@ -19,7 +19,7 @@ export default (_id, student) => {
     api.app.authenticate()
       .then(() => {
 
-        backend.patch(_id, {student})
+        backend.patch(_id, student)
           .then((result) => {
             dispatch({ type: APP_DONE_LOADING })
             dispatch({ type: LOAD_SUCCESS })

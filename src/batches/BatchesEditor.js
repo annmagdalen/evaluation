@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import createBatch from '../actions/batches/create'
+import RaisedButton from 'material-ui/RaisedButton'
 import 'medium-editor/dist/css/medium-editor.css'
 import 'medium-editor/dist/css/themes/default.css'
+import './BatchesEditor.css'
 
 class BatchesEditor extends PureComponent {
   constructor(props) {
@@ -57,14 +59,14 @@ class BatchesEditor extends PureComponent {
           type="number"
           ref="number"
           className="number"
-          placeholder="Number"
+          placeholder="Batch #"
           defaultValue={this.state.number}
           onChange={this.updateNumber.bind(this)} />
 
         <input
           type="date"
           ref="startDate"
-          className="startDate"
+          className="Date"
           placeholder="Date"
           defaultValue={this.state.startDate}
           onChange={this.updateStartDate.bind(this)} />
@@ -72,13 +74,13 @@ class BatchesEditor extends PureComponent {
         <input
           type="date"
           ref="endDate"
-          className="endDate"
+          className="Date"
           placeholder="Date"
           defaultValue={this.state.endDate}
           onChange={this.updateEndDate.bind(this)} />
 
         <div className="actions">
-          <button className="primary" onClick={this.saveBatch.bind(this)}>Save</button>
+          <RaisedButton className="primary" onClick={this.saveBatch.bind(this)}>Save</RaisedButton>
         </div>
       </div>
     )

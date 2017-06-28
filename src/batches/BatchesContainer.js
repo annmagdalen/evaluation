@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Title from '../components/Title'
 import BatchesEditor from './BatchesEditor'
 import BatchesItem from './BatchesItem'
 import fetchBatches from '../actions/batches/fetch'
 import subscribeToBatchesService from '../actions/batches/subscribe'
+import './BatchesContainer.css'
 
 class BatchesContainer extends PureComponent {
   static propTypes = {
@@ -34,13 +34,12 @@ class BatchesContainer extends PureComponent {
     } else {
     return(
       <div className="batches wrapper">
-        <header>
-          <Title content="ALL BATCHES" />
-        </header>
-
-        <main>
-          { this.props.batches.map(this.renderBatch.bind(this)) }
+        <div>
+        <h2>Add a new Batch</h2>
           <BatchesEditor />
+        </div>
+        <main className="batchesContainer">
+          { this.props.batches.map(this.renderBatch.bind(this)) }
         </main>
       </div>
     )

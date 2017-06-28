@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import joinBatch from '../actions/batches/join'
+import RaisedButton from 'material-ui/RaisedButton'
 import 'medium-editor/dist/css/medium-editor.css'
 import 'medium-editor/dist/css/themes/default.css'
+import './StudentsEditor.css'
 
 class StudentsEditor extends PureComponent {
   constructor(props) {
@@ -32,7 +34,7 @@ class StudentsEditor extends PureComponent {
     const { name, picture } = this.state
     const student = { name, picture }
     const { joinBatch, currentBatch } = this.props
-    joinBatch(currentBatch, student)
+    joinBatch(currentBatch._id, student)
   }
 
   render() {
@@ -49,13 +51,13 @@ class StudentsEditor extends PureComponent {
         <input
           type="string"
           ref="picture"
-          className="picture"
+          className="name"
           placeholder="Picture"
           defaultValue={this.state.picture}
           onChange={this.updatePicture.bind(this)} />
 
         <div className="actions">
-          <button className="primary" onClick={this.addStudentToBatch.bind(this)}>Save</button>
+          <RaisedButton className="primary" onClick={this.addStudentToBatch.bind(this)}>Save</RaisedButton>
         </div>
       </div>
     )
