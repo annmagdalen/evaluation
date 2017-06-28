@@ -10,7 +10,7 @@ export const JOINED_BATCH = 'JOINED_BATCH'
 
 const api = new API()
 
-export default (_id) => {
+export default (_id, student) => {
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
@@ -19,7 +19,7 @@ export default (_id) => {
     api.app.authenticate()
       .then(() => {
 
-        backend.patch(_id, { join: true })
+        backend.patch(_id, {student})
           .then((result) => {
             dispatch({ type: APP_DONE_LOADING })
             dispatch({ type: LOAD_SUCCESS })

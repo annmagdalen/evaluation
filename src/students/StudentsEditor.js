@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import createStudent from '../actions/students/create'
 import joinBatch from '../actions/batches/join'
 import 'medium-editor/dist/css/medium-editor.css'
 import 'medium-editor/dist/css/themes/default.css'
@@ -29,20 +28,11 @@ class StudentsEditor extends PureComponent {
     })
   }
 
-  saveStudent() {
-    const {
-      name,
-      picture
-    } = this.state
-
-    const student = {
-      name,
-      picture
-    }
-    this.props.createStudent(student)
-
+  addStudentToBatch = () => {
+    const { name, picture } = this.state
+    const student = { name, picture }
     const { joinBatch, currentBatch } = this.props
-    joinBatch(currentBatch)
+    joinBatch(currentBatch, student)
   }
 
   render() {
@@ -65,16 +55,16 @@ class StudentsEditor extends PureComponent {
           onChange={this.updatePicture.bind(this)} />
 
         <div className="actions">
-          <button className="primary" onClick={this.saveStudent.bind(this)}>Save</button>
+          <button className="primary" onClick={this.addStudentToBatch.bind(this)}>Save</button>
         </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ currentUser, currentBatch }) => ({
+const mapStateToProps = ({ currentUser, currentBatch, student }) => ({
   signedIn: !!currentUser && !!currentUser._id,
-  currentBatch
+  currentBatch, student
 })
 
-export default connect(mapStateToProps, { createStudent, joinBatch })(StudentsEditor)
+export default connect(mapStateToProps, { joinBatch })(StudentsEditor)
