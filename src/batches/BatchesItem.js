@@ -11,12 +11,6 @@ class BatchesItem extends PureComponent {
   render() {
     const { _id, number, startDate, endDate, students } = this.props
 
-    let newStartDate = new Date(startDate);
-    newStartDate = newStartDate.toDateString()
-
-    let newEndDate = new Date(endDate);
-    newEndDate = newEndDate.toDateString()
-
     return(
       <article className="batch">
       <header>
@@ -24,9 +18,7 @@ class BatchesItem extends PureComponent {
         <Link to={`/batch/${_id}`} className="link">BATCH #{ number }</Link></h1>
         </header>
         <main>
-          <p>{ newStartDate } </p>
-          <p>--</p>
-          <p>{ newEndDate }</p>
+          <p>{ new Date(startDate).toDateString() } - { new Date(endDate).toDateString() }</p>
         </main>
         <footer>
           <p>{ students.length } students</p>

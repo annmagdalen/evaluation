@@ -13,7 +13,7 @@ class DayItem extends PureComponent {
     return(
       <article className="day">
         <h1>{remarks}</h1>
-        <h1>{ date }</h1>
+        <h1>{ new Date(date).toDateString() }</h1>
       </article>
     )
   }

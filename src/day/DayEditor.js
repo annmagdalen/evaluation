@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import Editor from 'react-medium-editor'
-import joinBatch from '../actions/batches/join'
+import joinStudent from '../actions/batches/add-day'
 import RaisedButton from 'material-ui/RaisedButton'
 import 'medium-editor/dist/css/medium-editor.css'
 import 'medium-editor/dist/css/themes/default.css'
@@ -50,8 +50,8 @@ class DayEditor extends PureComponent {
   addDayToStudent = () => {
     const { date, remarks, red, yellow, green } = this.state
     const day = { date, remarks, red, yellow, green }
-    const { joinStudent, currentStudent } = this.props
-    joinBatch(currentStudent._id, day)
+    const { joinStudent, currentBatch } = this.props
+    joinStudent(currentBatch._id, day)
   }
 
   render() {
@@ -83,7 +83,7 @@ class DayEditor extends PureComponent {
         })}
 
         <div className="actions">
-          <RaisedButton className="primary" onClick={""}>Save</RaisedButton>
+          <RaisedButton className="primary" onClick={this.addDayToStudent.bind(this)}>Save</RaisedButton>
         </div>
       </div>
     )
@@ -95,4 +95,4 @@ const mapStateToProps = ({ currentUser, currentBatch, student }) => ({
   currentBatch, student
 })
 
-export default connect(mapStateToProps, { joinBatch })(DayEditor)
+export default connect(mapStateToProps, { joinStudent })(DayEditor)

@@ -6,7 +6,7 @@ import {
   LOAD_SUCCESS
 } from '../loading'
 
-export const JOINED_BATCH = 'JOINED_BATCH'
+export const DISJOINED_BATCH = 'DISJOINED_BATCH'
 
 const api = new API()
 
@@ -19,13 +19,13 @@ export default (_id, student) => {
     api.app.authenticate()
       .then(() => {
 
-        backend.patch(_id, { student, join: true })
+        backend.patch(_id, { student, disjoin: true })
           .then((result) => {
             dispatch({ type: APP_DONE_LOADING })
             dispatch({ type: LOAD_SUCCESS })
 
             dispatch({
-              type: JOINED_BATCH,
+              type: DISJOINED_BATCH,
               payload: result
             })
           })

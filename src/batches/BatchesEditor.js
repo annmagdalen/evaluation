@@ -15,7 +15,8 @@ class BatchesEditor extends PureComponent {
     this.state = {
       number,
       startDate,
-      endDate
+      endDate,
+      errors: {}
     }
   }
 
@@ -37,6 +38,23 @@ class BatchesEditor extends PureComponent {
     })
   }
 
+  validate(batch) {
+  const { number, startDate, endDate } = batch
+
+  let errors = {}
+
+  if (!number || number === '') errors.number = 'Batch number is missing'
+  if (!startDate || startDate === '') errors.startDate = 'Start date is missing'
+  if (!endDate || endDate === '') errors.endDate = 'End date is missing'
+  if (endDate < startDate) errors.endDate = 'End date needs to be after state date'
+
+  this.setState({
+    errors,
+  })
+
+  return Object.keys(errors).length === 0
+}
+
   saveBatch() {
     const {
       number,
@@ -49,10 +67,15 @@ class BatchesEditor extends PureComponent {
       startDate,
       endDate
     }
-    this.props.createBatch(batch)
+
+    if (this.validate(batch)) {
+      this.props.createBatch(batch)
+    }
   }
 
   render() {
+    const { errors } = this.state
+
     return (
       <div className="editor">
         <input
@@ -63,6 +86,8 @@ class BatchesEditor extends PureComponent {
           defaultValue={this.state.number}
           onChange={this.updateNumber.bind(this)} />
 
+        { errors.number && <p className="error">{ errors.number }</p> }
+
         <input
           type="date"
           ref="startDate"
@@ -71,6 +96,8 @@ class BatchesEditor extends PureComponent {
           defaultValue={this.state.startDate}
           onChange={this.updateStartDate.bind(this)} />
 
+        { errors.startDate && <p className="error">{ errors.startDate }</p> }
+
         <input
           type="date"
           ref="endDate"
@@ -78,6 +105,8 @@ class BatchesEditor extends PureComponent {
           placeholder="Date"
           defaultValue={this.state.endDate}
           onChange={this.updateEndDate.bind(this)} />
+
+        { errors.endDate && <p className="error">{ errors.endDate }</p> }
 
         <div className="actions">
           <RaisedButton className="primary" onClick={this.saveBatch.bind(this)}>Save</RaisedButton>

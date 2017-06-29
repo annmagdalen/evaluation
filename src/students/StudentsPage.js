@@ -3,9 +3,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import Title from '../components/Title'
 import DayItem from '../day/DayItem'
-import fetchBatches from '../actions/batches/fetch'
-import subscribeToBatchesService from '../actions/batches/subscribe'
-import getCurrentBatch from '../actions/batches/get'
+import getCurrentStudent from '../actions/batches/get-student'
 import DayEditor from '../day/DayEditor'
 
 export class StudentsPage extends PureComponent {
@@ -15,9 +13,9 @@ export class StudentsPage extends PureComponent {
   // }
 
   componentWillMount() {
-    const { batch, fetchBatches, subscribeToBatchesService, subscribed } = this.props
-    if (!batch) fetchBatches()
-    if (!subscribed) subscribeToBatchesService()
+    const { getCurrentStudent } = this.props
+    const { studentId } = this.props.params
+    getCurrentStudent(studentId)
   }
 
   renderDay(day, index) {
@@ -55,17 +53,10 @@ export class StudentsPage extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ batches, currentBatch }, { params }) => {
-  const batch = batches.reduce((prev, next) => {
-    if (next._id === params.batchId) {
-      return next
-    }
-    return prev
-  }, {})
-
+const mapStateToProps = ({ currentBatch }) => {
   return {
     ...currentBatch
   }
 }
 
-export default connect(mapStateToProps, { fetchBatches, subscribeToBatchesService, getCurrentBatch })(StudentsPage)
+export default connect(mapStateToProps, { getCurrentStudent })(StudentsPage)

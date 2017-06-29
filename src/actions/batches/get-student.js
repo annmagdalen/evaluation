@@ -6,11 +6,11 @@ import {
   LOAD_SUCCESS
 } from '../loading'
 
-export const JOINED_BATCH = 'JOINED_BATCH'
+export const GOT_STUDENT = 'GOT_STUDENT'
 
 const api = new API()
 
-export default (_id, student) => {
+export default (student) => {
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
@@ -18,14 +18,13 @@ export default (_id, student) => {
 
     api.app.authenticate()
       .then(() => {
-
-        backend.patch(_id, { student, join: true })
+        backend.get(student)
           .then((result) => {
             dispatch({ type: APP_DONE_LOADING })
             dispatch({ type: LOAD_SUCCESS })
 
             dispatch({
-              type: JOINED_BATCH,
+              type: GOT_STUDENT,
               payload: result
             })
           })
