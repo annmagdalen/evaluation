@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import Editor from 'react-medium-editor'
-import joinStudent from '../actions/batches/add-day'
+import joinDay from '../actions/batches/add-day'
 import RaisedButton from 'material-ui/RaisedButton'
 import 'medium-editor/dist/css/medium-editor.css'
 import 'medium-editor/dist/css/themes/default.css'
@@ -33,9 +33,9 @@ class DayEditor extends PureComponent {
     })
   }
 
-  updateRemarks(text, medium) {
+  updateRemarks(event) {
     this.setState({
-      remarks: text
+      remarks: this.refs.remarks.value
     })
   }
 
@@ -50,8 +50,8 @@ class DayEditor extends PureComponent {
   addDayToStudent = () => {
     const { date, remarks, red, yellow, green } = this.state
     const day = { date, remarks, red, yellow, green }
-    const { joinStudent, currentBatch } = this.props
-    joinStudent(currentBatch._id, day)
+    const { joinDay, currentBatch, currentStudent } = this.props
+    joinDay(currentBatch._id, currentStudent[0]._id, day)
   }
 
   render() {
@@ -62,16 +62,15 @@ class DayEditor extends PureComponent {
           ref="date"
           className="date"
           placeholder="Date"
-          defaultValue={Date.now}
+          defaultValue={this.state.date}
           onChange={this.updateDate.bind(this)} />
 
-        <Editor
+        <input
+          type="text"
           ref="remarks"
-          options={{
-            placeholder: {text: 'Write some remarks...'}
-          }}
-          onChange={this.updateRemarks.bind(this)}
-          text={this.state.remarks} />
+          className="remarks"
+          placeholder="Remarks"
+          onChange={this.updateRemarks.bind(this)} />
 
         {TYPES.map((type) => {
           return <label key={type} htmlFor={type}>
@@ -90,9 +89,9 @@ class DayEditor extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ currentUser, currentBatch, student }) => ({
+const mapStateToProps = ({ currentUser, currentBatch, currentStudent, student }) => ({
   signedIn: !!currentUser && !!currentUser._id,
-  currentBatch, student
+  currentBatch, currentStudent, student
 })
 
-export default connect(mapStateToProps, { joinStudent })(DayEditor)
+export default connect(mapStateToProps, { joinDay })(DayEditor)

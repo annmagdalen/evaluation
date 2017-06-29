@@ -51,6 +51,11 @@ export class BatchesPage extends PureComponent {
           onClick={this.renderQuestion.bind(this)}
           icon={ <QuestionMark /> }> </RaisedButton>
         </header>
+        <div className="bar">
+        <p>red: {(students[0].day[1].red ? 1:0 + students[1].day[1].red ? 1:0)/students.length*100}%</p>
+        <p>yellow: {(students[0].day[1].yellow ? 1:0 + students[1].day[1].yellow ? 1:0)/students.length*100}%</p>
+        <p>green: {(students[0].day[1].green ? 1:0 + students[1].day[1].green ? 1:0)/students.length*100}%</p>
+        </div>
         <div>
         <h2>Add a new student</h2>
         <StudentsEditor />

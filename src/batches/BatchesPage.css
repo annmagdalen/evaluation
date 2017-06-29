@@ -3,3 +3,12 @@ main.renderStudent {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; }
+
+.bar .red {
+  color: #DD2121; }
+
+.bar .yellow {
+  color: #FADD07; }
+
+.bar .green {
+  color: #14A531; }

@@ -1,47 +1,8 @@
-import API from '../../api'
-import {
-  APP_LOADING,
-  APP_DONE_LOADING,
-  LOAD_ERROR,
-  LOAD_SUCCESS
-} from '../loading'
-
 export const GOT_STUDENT = 'GOT_STUDENT'
 
-const api = new API()
-
 export default (student) => {
-  return (dispatch) => {
-    dispatch({ type: APP_LOADING })
-
-    const backend = api.service('batches')
-
-    api.app.authenticate()
-      .then(() => {
-        backend.get(student)
-          .then((result) => {
-            dispatch({ type: APP_DONE_LOADING })
-            dispatch({ type: LOAD_SUCCESS })
-
-            dispatch({
-              type: GOT_STUDENT,
-              payload: result
-            })
-          })
-          .catch((error) => {
-            dispatch({ type: APP_DONE_LOADING })
-            dispatch({
-              type: LOAD_ERROR,
-              payload: error.message
-            })
-          })
-      })
-      .catch((error) => {
-        dispatch({ type: APP_DONE_LOADING })
-        dispatch({
-          type: LOAD_ERROR,
-          payload: error.message
-        })
-      })
+  return {
+    type: GOT_STUDENT,
+    payload: student
   }
 }

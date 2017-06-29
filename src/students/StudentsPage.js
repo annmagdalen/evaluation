@@ -15,7 +15,10 @@ export class StudentsPage extends PureComponent {
   componentWillMount() {
     const { getCurrentStudent } = this.props
     const { studentId } = this.props.params
-    getCurrentStudent(studentId)
+    const currentStudent = this.props.students.filter((student) => {
+      return student._id === this.props.params.studentId
+    })
+    getCurrentStudent(currentStudent)
   }
 
   renderDay(day, index) {
@@ -27,12 +30,9 @@ export class StudentsPage extends PureComponent {
       students
     } = this.props
 
-    console.log(students)
-
     const student = students.find((student) => (
       student._id === this.props.params.studentId
     ))
-    console.log(student)
 
    if(!students) return null
 
