@@ -1,0 +1,17 @@
+article.day {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  background-color: #F3F5FC;
+  padding: 50px;
+  padding-top: 10px;
+  min-width: calc(30% - 4.4rem);
+  flex-shrink: 1; }
+  article.day .red {
+    background-color: #DD2121; }
+  article.day .yellow {
+    background-color: #FADD07; }
+  article.day .green {
+    background-color: #14A531; }

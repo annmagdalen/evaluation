@@ -7,8 +7,7 @@ import StudentsEditor from '../students/StudentsEditor'
 import fetchBatches from '../actions/batches/fetch'
 import subscribeToBatchesService from '../actions/batches/subscribe'
 import getCurrentBatch from '../actions/batches/get'
-import RaisedButton from 'material-ui/RaisedButton'
-import QuestionMark from 'material-ui/svg-icons/action/help'
+import AskQuestion from '../components/AskQuestion'
 import './BatchesPage.css'
 
 export class BatchesPage extends PureComponent {
@@ -29,10 +28,6 @@ export class BatchesPage extends PureComponent {
     return <StudentsItem key={index} { ...student } />
   }
 
-  renderQuestion() {
-    alert("Ask the lady with the pink shirt a question")
-  }
-
   render() {
     const {
       number,
@@ -41,20 +36,30 @@ export class BatchesPage extends PureComponent {
 
    if(!students) return null
 
+   let red = 0
+   let yellow = 0
+   let green = 0
+
+   students.map((student) => {
+     if (student.day[student.day.length-1].red) {
+       red++
+     }
+     if (student.day[student.day.length-1].yellow) {
+       yellow++
+     }
+     if (student.day[student.day.length-1].green) {
+       green++
+     }
+   })
+
    return (
       <article className="batchPage">
         <header>
           <Title content={`BATCH #${number}`}/>
-          <RaisedButton
-          label="Ask a student"
-          primary={true}
-          onClick={this.renderQuestion.bind(this)}
-          icon={ <QuestionMark /> }> </RaisedButton>
+          <AskQuestion students={students}/>
         </header>
         <div className="bar">
-        <p>red: {(students[0].day[1].red ? 1:0 + students[1].day[1].red ? 1:0)/students.length*100}%</p>
-        <p>yellow: {(students[0].day[1].yellow ? 1:0 + students[1].day[1].yellow ? 1:0)/students.length*100}%</p>
-        <p>green: {(students[0].day[1].green ? 1:0 + students[1].day[1].green ? 1:0)/students.length*100}%</p>
+        <div>red: {red/students.length*100}%</div><div>yellow: {yellow/students.length*100}%</div><div>green: {green/students.length*100}%</div>
         </div>
         <div>
         <h2>Add a new student</h2>

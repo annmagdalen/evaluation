@@ -5,6 +5,7 @@ import Title from '../components/Title'
 import DayItem from '../day/DayItem'
 import getCurrentStudent from '../actions/batches/get-student'
 import DayEditor from '../day/DayEditor'
+import './StudentsPage.css'
 
 export class StudentsPage extends PureComponent {
   // static propTypes = {
@@ -27,6 +28,7 @@ export class StudentsPage extends PureComponent {
 
   render() {
     const {
+      number,
       students
     } = this.props
 
@@ -40,12 +42,13 @@ export class StudentsPage extends PureComponent {
       <article className="batch page">
         <header>
           <Title content={student.name}/>
+          <h4>BATCH #{number}</h4>
         </header>
         <div>
           <h3>Add a new evaluation</h3>
           <DayEditor />
         </div>
-        <main>
+        <main className="renderDay">
           { student.day.map(this.renderDay.bind(this)) }
         </main>
       </article>

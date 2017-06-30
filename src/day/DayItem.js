@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import './DayItem.css'
 
 class DayItem extends PureComponent {
   static propTypes = {
@@ -12,8 +13,8 @@ class DayItem extends PureComponent {
 
     return(
       <article className="day">
-        <h1>{remarks}</h1>
-        <h1>{ new Date(date).toDateString() }</h1>
+        <h1 className={`${green ? "green": (yellow ? "yellow" : "red")}`}>{ new Date(date).toDateString() }</h1>
+        <h5>Remarks: {remarks}</h5>
       </article>
     )
   }

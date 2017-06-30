@@ -4,11 +4,11 @@ main.renderStudent {
   flex-direction: row;
   flex-wrap: wrap; }
 
-.bar .red {
-  color: #DD2121; }
-
-.bar .yellow {
-  color: #FADD07; }
-
-.bar .green {
-  color: #14A531; }
+.bar {
+  margin: 10px; }
+  .bar .red {
+    color: #DD2121; }
+  .bar .yellow {
+    color: #FADD07; }
+  .bar .green {
+    color: #14A531; }
