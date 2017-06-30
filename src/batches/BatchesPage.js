@@ -41,14 +41,23 @@ export class BatchesPage extends PureComponent {
    let green = 0
 
    students.map((student) => {
-     if (student.day[student.day.length-1].red) {
-       red++
+     if (student.day[0] !== undefined) {
+       if (student.day[student.day.length-1].red) {
+         red++
+       }
+       if (student.day[student.day.length-1].yellow) {
+         yellow++
+       }
+       if (student.day[student.day.length-1].green) {
+         green++
+       }
      }
-     if (student.day[student.day.length-1].yellow) {
-       yellow++
-     }
-     if (student.day[student.day.length-1].green) {
-       green++
+   })
+
+   let studentsLength = 0
+   students.map((student) => {
+     if (student.day[0] !== undefined) {
+       studentsLength++
      }
    })
 
@@ -59,7 +68,9 @@ export class BatchesPage extends PureComponent {
           <AskQuestion students={students}/>
         </header>
         <div className="bar">
-        <div>red: {red/students.length*100}%</div><div>yellow: {yellow/students.length*100}%</div><div>green: {green/students.length*100}%</div>
+        <p className="red">red: {(red/studentsLength*100).toFixed(0)}%</p>
+        <p className="yellow">yellow: {(yellow/studentsLength*100).toFixed(0)}%</p>
+        <p className="green">green: {(green/studentsLength*100).toFixed(0)}%</p>
         </div>
         <div>
         <h2>Add a new student</h2>

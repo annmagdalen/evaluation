@@ -5,10 +5,22 @@ main.renderStudent {
   flex-wrap: wrap; }
 
 .bar {
-  margin: 10px; }
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
   .bar .red {
-    color: #DD2121; }
+    color: #DD2121;
+    font-style: italic;
+    margin: 10px 50px;
+    min-width: calc(30% - 4.4rem); }
   .bar .yellow {
-    color: #FADD07; }
+    color: #FADD07;
+    font-style: italic;
+    margin: 10px 50px;
+    min-width: calc(30% - 4.4rem); }
   .bar .green {
-    color: #14A531; }
+    color: #14A531;
+    font-style: italic;
+    margin: 10px 50px;
+    min-width: calc(30% - 4.4rem); }
